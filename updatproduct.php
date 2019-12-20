@@ -13,7 +13,7 @@
     
     
 
-    $sql = "UPDATE car SET brand='$brand',model='$model',color=$color,license=$license,province='$province',modelYear='$modelYear',price='$price',postedBy='$postedBy' WHERE id = $pid";
+    $sql = "UPDATE car SET brand='$brand',model='$model',color='$color',license='$license',province='$province',modelYear='$modelYear',price='$price',postedBy='$postedBy' WHERE id = $pid";
     
     echo $sql;
 

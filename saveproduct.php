@@ -10,7 +10,7 @@
         echo "Non-image file is not allowed,";
 
     }
-    else if($size<1.00){
+    else if($size>10.00){
         echo "File size exceeds the maximum treshold";
     }
     else{

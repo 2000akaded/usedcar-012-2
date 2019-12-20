@@ -1,6 +1,26 @@
 <?php
     session_start();
     include("connext.php");
+    if(!isset($_GET['pid']) || $_GET['pid']==""){
+        header("Location:index.php");
+    }
+    else{
+        $pid = $_GET['pid'];
+    }
+    $sql = "SELECT * FROM car WHERE id=$pid";
+    $result = $conn->query($sql);
+    if(!$result){
+        echo "Error: " .$conn->error;
+    }
+    else{
+        if($result->num_rows>0){
+            $prd = $result->fetch_object();
+        }
+        else{
+            $prd = NULL;
+        }
+    }
+   // var_dump($prd);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,7 +134,7 @@
     </nav>
     <br><br><br>
     <h2>Edit Car</h2>
-    <center><img src="jpg/<?php echo $prd->carpic; ?>" alt="" ></center>
+    <center><img src="jpg/<?php echo $prd->carpic; ?>" alt="" style="width:50%"></center>
     <div class="container">
         <div class="row">
             <form action="updatproduct.php" class="form-horizontal" method= "post" enctype="multipart/form-data">
@@ -170,7 +190,7 @@
             <div class="form-group">
                 <label for="name" class="control-label col-md-3">Carpic :</label>
                 <div class="col-md-9">
-                    <input type="file"name="filePic" class="form-control-file" accept="image/*">
+                    <input type="file"name="filePic" class="form-control-file" accept="image/*" >
                 </div>
             </div>  
             <div class="form-group">
